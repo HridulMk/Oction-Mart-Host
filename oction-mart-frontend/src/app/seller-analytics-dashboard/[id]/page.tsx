@@ -27,6 +27,7 @@ import { styled, alpha, createTheme, ThemeProvider } from "@mui/material/styles"
 import { Home, Analytics, ShoppingCart, People, Settings, Search, Brightness4, Brightness7 } from "@mui/icons-material";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Legend } from "recharts";
 import { dashboardService, DashboardResponse } from "@/api/services/dashboard";
+import { config } from "@/config/environment";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const drawerWidth = 80;
@@ -169,7 +170,7 @@ export default function SellerAnalyticsDashboard() {
   size="small"
   onClick={() => {
     if (!user?.id) return;
-    window.location.href = `http://127.0.0.1:8000/api/seller/${user.id}/dashboard/csv/`;
+    window.location.href = `${config.API_BASE_URL}/seller/${user.id}/dashboard/csv/`;
   }}
 >
   Export CSV

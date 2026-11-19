@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { FaSearch, FaPaperPlane, FaUser } from "react-icons/fa";
+import { config } from "@/config/environment";
 
 interface Conversation {
   id: number;
@@ -37,7 +38,7 @@ const AdminChat: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const eventSourceRef = useRef<EventSource | null>(null);
-const BASE_URL = "http://localhost:8000/api"; // Django API prefix
+const BASE_URL = config.API_BASE_URL;
   // Load admin user & token
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");

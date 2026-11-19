@@ -1,4 +1,5 @@
 // src/api/services/websocketServices.ts
+import { config } from "@/config/environment";
 
 type MessageHandler = (data: AuctionWSMessage) => void;
 type ErrorHandler = (error: Event) => void;
@@ -23,8 +24,9 @@ export function connectToAuctionWebSocket(
   token: string,
   onMessage: (data: any) => void
 ) {
-  // ✅ Make sure ws:// or wss:// matches your backend
-  const wsUrl = `ws://localhost:8000/ws/bid/${auctionId}`;
+  const backendOrigin = new URL(config.API_ORIGIN);
+  const wsProtocol = backendOrigin.protocol === "https:" ? "wss:" : "ws:";
+  const wsUrl = `${wsProtocol}//${backendOrigin.host}/ws/bid/${auctionId}`;
 
   const socket = new WebSocket(wsUrl);
 

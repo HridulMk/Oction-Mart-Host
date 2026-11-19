@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { backendAssetUrl } from "@/config/environment";
 
 import {
   createTheme,
@@ -178,7 +179,7 @@ const transformAuctions = (auctions: any[]) => auctions.map(a => ({
   currentBid: formatCurrency(a.current_bid),
   start_price: formatCurrency(a.start_price),
   endTime: formatEndTime(a.auction_end),
-  image: a.image ? `http://localhost:8000${a.image}` : "/images/placeholder.jpg", // Full backend URL or local fallback
+  image: typeof a.image === "string" ? backendAssetUrl(a.image) : "/images/placeholder.jpg",
   status: a.status.charAt(0).toUpperCase() + a.status.slice(1), // Capitalize status
   category: a.category || "Uncategorized"
 }));
@@ -604,7 +605,9 @@ const handleRejectItem = async (itemId, reason) => {
                     width: '80px',
                     height: '80px',
                     borderRadius: '8px',
-                    background: `ur[](http://127.0.0.1:8000${item.image})`,
+                    background: typeof item.image === "string"
+                      ? `url(${backendAssetUrl(item.image)})`
+                      : "none",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     flexShrink: 0

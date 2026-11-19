@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { backendAssetUrl, config } from "@/config/environment";
 
 interface SellerProfile {
   id: number;
@@ -29,16 +30,20 @@ export default function SellerDashboard() {
     async function fetchData() {
       try {
         // ✅ Fetch profile
-        const profileRes = await fetch("http://127.0.0.1:8000/profile/", {
-          credentials: "include",
+        const token = localStorage.getItem("accessToken");
+        const headers: HeadersInit = token
+          ? { Authorization: `Bearer ${token}` }
+          : {};
+        const profileRes = await fetch(`${config.API_BASE_URL}/auth/profile/`, {
+          headers,
         });
         if (!profileRes.ok) throw new Error("Profile fetch failed");
         const profileData = await profileRes.json();
         setProfile(profileData);
 
         // ✅ Fetch seller's items
-        const itemsRes = await fetch("http://127.0.0.1:8000/seller/items/", {
-          credentials: "include",
+        const itemsRes = await fetch(`${config.API_BASE_URL}/seller/items/`, {
+          headers,
         });
         if (!itemsRes.ok) throw new Error("Items fetch failed");
         const itemsData = await itemsRes.json();
@@ -149,7 +154,7 @@ export default function SellerDashboard() {
             >
               {item.image ? (
                 <img
-                  src={`http://127.0.0.1:8000${item.image}`}
+                  src={backendAssetUrl(item.image)}
                   alt={item.title}
                   style={{
                     width: "100%",

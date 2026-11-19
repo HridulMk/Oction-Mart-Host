@@ -1,6 +1,8 @@
 // src/api/services/auctions.ts
 // Auction service function
 import api from '../index';
+import axios from 'axios';
+import { config } from '@/config/environment';
 
 
 
@@ -342,9 +344,7 @@ export const fetchAuctionReport = async (
 
 
 
-import axios from "axios";
-
-const API_BASE_URL = "http://localhost:8000/api"; // adjust if needed
+const API_BASE_URL = config.API_BASE_URL;
 
 interface WatchlistResponse {
   message: string;

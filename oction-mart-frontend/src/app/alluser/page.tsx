@@ -4,10 +4,11 @@
 import { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, CircularProgress, Typography } from '@mui/material';
 import axios from 'axios';
+import { config } from '@/config/environment';
 
 // Define the API client directly in the page
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api', // Backend base URL
+  baseURL: config.API_BASE_URL,
 });
 
 // Reuse the getAllUsers function from dashboard.ts (inlined for clarity)
@@ -26,13 +27,12 @@ export default function UsersPage() {
   const [error, setError] = useState<string | null>(null);
   const [currentPageUrl, setCurrentPageUrl] = useState('/admin/users/all/');
 
-  // Replace with your actual token retrieval logic
-  const token = 'your-jwt-token-here'; // Example: Retrieve from localStorage or auth context
-
   // Function to fetch users
   const fetchUsers = async (url: string) => {
     setLoading(true);
     try {
+      const token = localStorage.getItem('accessToken');
+      if (!token) throw new Error('Admin authentication is required.');
       const data = await getAllUsers(token, url);
       setUsersData(data);
       setError(null);
@@ -52,13 +52,13 @@ export default function UsersPage() {
   // Handle pagination
   const handleNextPage = () => {
     if (usersData.next) {
-      setCurrentPageUrl(usersData.next.replace('http://127.0.0.1:8000', '')); // Adjust for relative path
+      setCurrentPageUrl(usersData.next);
     }
   };
 
   const handlePreviousPage = () => {
     if (usersData.previous) {
-      setCurrentPageUrl(usersData.previous.replace('http://127.0.0.1:8000', '')); // Adjust for relative path
+      setCurrentPageUrl(usersData.previous);
     }
   };
 

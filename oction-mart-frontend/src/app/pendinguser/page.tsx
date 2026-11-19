@@ -31,6 +31,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { config } from '@/config/environment';
 
 interface PendingUser {
   id: number;
@@ -59,7 +60,7 @@ interface ApiResponse {
   results: PendingUser[];
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
+const API_BASE_URL = config.API_BASE_URL;
 
 // Auth helpers
 const getAuthToken = (): string | null => {

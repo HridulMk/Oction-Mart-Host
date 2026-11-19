@@ -55,7 +55,7 @@ See [BACKEND_INTEGRATION.md](./BACKEND_INTEGRATION.md) for complete backend requ
    
    Update `.env.local` with your backend URL:
    ```bash
-   NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
    ```
 
 4. **Run the development server**
@@ -123,7 +123,7 @@ Create a `.env.local` file in the project root:
 
 ```bash
 # Backend API Configuration
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
 
 # Authentication
 NEXT_PUBLIC_AUTH_TOKEN_KEY=authToken

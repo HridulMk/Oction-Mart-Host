@@ -8,9 +8,10 @@ import {
   IconButton, CircularProgress, styled
 } from '@mui/material';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import { config } from '@/config/environment';
 
 // --- API Service ---
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = config.API_BASE_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL,

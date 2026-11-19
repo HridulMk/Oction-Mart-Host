@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from 'next/link';
+import { config } from '@/config/environment';
 
-const BASE_URL = 'http://localhost:8000/api'; // Your Django API prefix
+const BASE_URL = config.API_BASE_URL;
 const ADMIN_ID = 1 ; // Admin ID for support
 
 export default function Chat() {

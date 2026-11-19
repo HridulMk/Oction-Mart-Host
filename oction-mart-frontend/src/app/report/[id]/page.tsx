@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { AttachMoney, People, Gavel, EmojiEvents, AccessTime } from "@mui/icons-material";
 import { fetchAuctionReport, AuctionReport, auctionService, Bid } from "@/api/services/auctions";
+import { backendAssetUrl } from "@/config/environment";
 
 const IMAGE_SIZE = 500;
 const CARD_RADIUS = 20;
@@ -132,7 +133,7 @@ export default function AuctionReportPage() {
           <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem", minWidth: 0 }}>
             <div style={{ width: IMAGE_SIZE, height: IMAGE_SIZE, background: "#e5e7eb", borderRadius: CARD_RADIUS, boxShadow: CARD_SHADOW, overflow: "hidden" }}>
               <img
-                src={report.image ? `http://127.0.0.1:8000${report.image}` : "/placeholder.png"}
+                src={report.image ? backendAssetUrl(report.image) : "/placeholder.png"}
                 alt={auctionItem.title}
                 style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: CARD_RADIUS, boxShadow: "0 0 32px 0 #8A2BE255" }}
               />

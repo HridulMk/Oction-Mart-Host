@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 import { auctionService, AuctionItem } from '@/api/services/auctions';
+import { backendAssetUrl } from '@/config/environment';
 
 // Types
 interface AuctionItem {
@@ -176,7 +177,7 @@ export default function ExploreAuctionsPage() {
                   }}
                 >
                   <img
-                    src={`http://127.0.0.1:8000${auction.image}`}
+                    src={typeof auction.image === "string" ? backendAssetUrl(auction.image) : "/placeholder.jpg"}
                     alt={auction.title}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />

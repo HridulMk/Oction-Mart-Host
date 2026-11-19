@@ -1,12 +1,12 @@
-import { authService } from "./auth"; // if needed for types
 import axios from "axios";
+import { config } from "@/config/environment";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+const API_BASE = config.API_BASE_URL;
 
 export const paymentService = {
   createPaymentRequest: async (auctionId: number, token: string) => {
     const response = await axios.post(
-      `${API_BASE}/api/payments/${auctionId}/request/`,
+      `${API_BASE}/payments/${auctionId}/request/`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },

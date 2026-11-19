@@ -1,5 +1,6 @@
 // src/api/services/products.ts
 import api from "@/api";
+import { backendAssetUrl } from "@/config/environment";
 
 // --- Types ---
 export interface Auctioneer {
@@ -40,7 +41,7 @@ const normalizeAuctionItem = (item: any): AuctionItem => ({
   category: item.category,
   start_price: item.start_price,
   image: item.image
-    ? `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}${item.image}`
+    ? backendAssetUrl(item.image)
     : undefined,
   approval_status: item.approval_status,
   seller: item.seller,

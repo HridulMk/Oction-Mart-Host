@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { auctionService, AuctionItem } from "@/api/services/auctions";
+import { backendAssetUrl } from "@/config/environment";
 
 export default function BuyerLaunch() {
   const [auctions, setAuctions] = useState<AuctionItem[]>([]);
@@ -169,7 +170,7 @@ export default function BuyerLaunch() {
                 {idx % 2 === 0 && (
                   <img
                     
-  src={auction.image ? `http://127.0.0.1:8000${auction.image}` : "/placeholder.jpg"}
+  src={typeof auction.image === "string" ? backendAssetUrl(auction.image) : "/placeholder.jpg"}
                     alt={auction.title}
                     style={{ width: 220, height: 140, objectFit: "cover" }}
                   />
@@ -228,7 +229,7 @@ export default function BuyerLaunch() {
                 {idx % 2 === 1 && (
                   <img
                     
-  src={auction.image ? `http://127.0.0.1:8000${auction.image}` : "/placeholder.jpg"}
+  src={typeof auction.image === "string" ? backendAssetUrl(auction.image) : "/placeholder.jpg"}
                     alt={auction.title}
                     style={{ width: 220, height: 140, objectFit: "cover" }}
                   />
@@ -264,7 +265,7 @@ export default function BuyerLaunch() {
         <img
           src={
             auctions[3].image
-              ? `http://127.0.0.1:8000${auctions[3].image}`
+              ? typeof auctions[3].image === "string" ? backendAssetUrl(auctions[3].image) : "/placeholder.jpg"
               : "/placeholder.jpg"
           }
           alt={auctions[3].title}
@@ -303,7 +304,7 @@ export default function BuyerLaunch() {
         <img
           src={
             auctions[1].image
-              ? `http://127.0.0.1:8000${auctions[4].image}`
+              ? typeof auctions[4].image === "string" ? backendAssetUrl(auctions[4].image) : "/placeholder.jpg"
               : "/placeholder.jpg"
           }
           alt={auctions[4].title}

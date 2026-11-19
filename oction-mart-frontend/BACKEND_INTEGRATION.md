@@ -1,6 +1,6 @@
 # Backend Integration Guide
 
-This guide outlines the steps to connect your Oction Mart frontend to a backend API.
+This guide outlines how to connect the Oction Mart frontend to the Django API. The active backend uses the `/api/` prefix (not `/api/v1/`); verify individual routes against the Django URL configuration.
 
 ## Prerequisites
 
@@ -13,37 +13,37 @@ This guide outlines the steps to connect your Oction Mart frontend to a backend 
 ### Authentication Endpoints
 
 ```
-POST /api/v1/auth/login/
-POST /api/v1/auth/register/
-POST /api/v1/auth/logout/
-GET /api/v1/auth/profile/
-POST /api/v1/auth/refresh/
+POST /api/auth/login/
+POST /api/auth/register/
+POST /api/auth/logout/
+GET /api/auth/profile/
+POST /api/auth/refresh/
 ```
 
 ### Auction Endpoints
 
 ```
-GET /api/v1/auctions/
-GET /api/v1/auctions/{id}/
-POST /api/v1/auctions/
-PUT /api/v1/auctions/{id}/
-DELETE /api/v1/auctions/{id}/
-POST /api/v1/auctions/bid/
-GET /api/v1/auctions/{id}/bids/
-GET /api/v1/auctions/featured/
-GET /api/v1/auctions/category/{category}/
+GET /api/auctions/
+GET /api/auctions/{id}/
+POST /api/auctions/
+PUT /api/auctions/{id}/
+DELETE /api/auctions/{id}/
+POST /api/auctions/bid/
+GET /api/auctions/{id}/bids/
+GET /api/auctions/featured/
+GET /api/auctions/category/{category}/
 ```
 
 ### Product Endpoints
 
 ```
-GET /api/v1/products/
-GET /api/v1/products/{id}/
-POST /api/v1/products/
-PUT /api/v1/products/{id}/
-DELETE /api/v1/products/{id}/
-GET /api/v1/products/seller/{sellerId}/
-PATCH /api/v1/products/{id}/status/
+GET /api/products/
+GET /api/products/{id}/
+POST /api/products/
+PUT /api/products/{id}/
+DELETE /api/products/{id}/
+GET /api/products/seller/{sellerId}/
+PATCH /api/products/{id}/status/
 ```
 
 ## Environment Configuration
@@ -52,7 +52,7 @@ PATCH /api/v1/products/{id}/status/
 
 ```bash
 # Backend API Configuration
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
 
 # Authentication
 NEXT_PUBLIC_AUTH_TOKEN_KEY=authToken
@@ -62,8 +62,10 @@ NEXT_PUBLIC_USER_KEY=user
 2. For production, update the API base URL:
 
 ```bash
-NEXT_PUBLIC_API_BASE_URL=https://your-backend-domain.com/api/v1
+NEXT_PUBLIC_API_BASE_URL=https://oction-mart-host.onrender.com/api
 ```
+
+On Vercel, add `NEXT_PUBLIC_API_BASE_URL` with the production value above and redeploy. On Render, set `CORS_ALLOWED_ORIGINS` to the exact Vercel site origin (for example, `https://your-project.vercel.app`) and set `DEBUG=False`. Do not include `/api` in `CORS_ALLOWED_ORIGINS`.
 
 ## API Response Formats
 

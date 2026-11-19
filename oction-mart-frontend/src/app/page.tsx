@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { auctionService, AuctionItem } from '@/api/services/auctions';
+import { backendAssetUrl } from '@/config/environment';
 import { get } from 'http';
 
 const feedbackData = [
@@ -326,7 +327,9 @@ export default function HomePage() {
                     height: '100%',
                     
                     borderRadius: '8px',
-                    background: `url(http://127.0.0.1:8000${auction.image})`,
+                    background: typeof auction.image === 'string'
+                      ? `url(${backendAssetUrl(auction.image)})`
+                      : 'none',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     flexShrink: 0

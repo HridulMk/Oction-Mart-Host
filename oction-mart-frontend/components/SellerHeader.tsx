@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
+import { config } from "@/config/environment";
 
 
 const SellerHeader = () => {
@@ -13,7 +14,7 @@ const SellerHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0); 
 
-const API_BASE_URL = "http://localhost:8000/api"; 
+const API_BASE_URL = config.API_BASE_URL;
 
   const navLinks = [
   { href: "/", label: "Home" },

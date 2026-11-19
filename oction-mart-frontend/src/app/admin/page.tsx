@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import React from 'react';
+import { config } from '@/config/environment';
 
 // Main App component for the admin login page.
 // It is a self-contained functional component using hooks for state management.
@@ -84,7 +85,7 @@ const App = () => {
     setError(null);
     setIsLoading(true);
   
-    const API_URL = "http://127.0.0.1:8000/api/auth/login/"; // Your Django login endpoint
+    const API_URL = `${config.API_BASE_URL}/auth/login/`;
   
     try {
       const response = await fetch(API_URL, {
@@ -95,6 +96,7 @@ const App = () => {
         body: JSON.stringify({
           username: formData.username,
           password: formData.password,
+          user_type: 'admin',
         }),
       });
   

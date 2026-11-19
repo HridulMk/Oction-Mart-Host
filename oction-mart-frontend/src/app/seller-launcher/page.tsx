@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { auctionService } from "@/api/services/auctions"; // adjust path
+import { backendAssetUrl } from "@/config/environment";
 
 export default function SellerLaunchPage() {
   const router = useRouter();
@@ -136,7 +137,7 @@ export default function SellerLaunchPage() {
 
               <div key={auction.id} style={{ display: "flex", background: "#2c2c4a", borderRadius: 16, overflow: "hidden", marginBottom: 24 }}>
                 <img
-                  src={`http://127.0.0.1:8000${auction.image || "/placeholder.jpg"}`}
+                  src={auction.image ? backendAssetUrl(auction.image) : "/placeholder.jpg"}
                   alt={auction.title}
                   style={{ width: 220, height: 140, objectFit: "cover" }}
                 />

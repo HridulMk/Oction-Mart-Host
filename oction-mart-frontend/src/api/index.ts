@@ -3,7 +3,7 @@ import { config } from '@/config/environment';
 import toast from 'react-hot-toast';
 import { authService } from './services/auth';
 
-const API_BASE = config.API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE = config.API_BASE_URL;
 
 // Create axios instance
 const api = axios.create({

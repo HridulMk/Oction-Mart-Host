@@ -1,7 +1,8 @@
 // src/api/services/notifications.ts
 import axios from "axios";
+import { config } from "@/config/environment";
 
-const API_BASE_URL = "http://localhost:8000/api"; // Adjust for prod
+const API_BASE_URL = config.API_BASE_URL;
 
 export const notificationService = {
   async getNotifications(buyerId: number) {
