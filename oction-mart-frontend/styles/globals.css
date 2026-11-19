@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+
+
+/* globals.css */
+@import "./base/_reset.css";
+@import "./base/_variables.css";
+@import "./base/_typography.css";
+@import "./components/button.css";
+@import "./components/input.css";
+@import "./components/card.css";
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes smoke-effect {
+  0% { transform: scale(0.8) translate(0%, 0%); opacity: 0; }
+  50% { transform: scale(1.2) translate(10%, -10%); opacity: 0.1; }
+  100% { transform: scale(1.5) translate(20%, 0%); opacity: 0; }
+}
+.bg-smoke::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  animation: smoke-effect 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@layer utilities {
+  /* Background and Text Utilities */
+  .bg-dark-text {
+    @apply bg-[#181a2a] text-gray-100;
+  }
+
+  .text-light-gray {
+    @apply text-gray-300;
+  }
+
+  .text-subtle {
+    @apply text-gray-400;
+  }
+
+  /* Card & Box Styles */
+  .card-dark {
+    @apply bg-[#1f2235] rounded-xl shadow-md p-4;
+  }
+
+  .card-hover {
+    @apply transition duration-300 ease-in-out hover:shadow-lg hover:bg-[#252945];
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition;
+  }
+
+  .btn-outline {
+    @apply border border-gray-400 text-gray-200 px-4 py-2 rounded hover:bg-gray-700;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700;
+  }
+
+  /* Section Styling */
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold mb-4 text-white;
+  }
+
+  .section-subtitle {
+    @apply text-xl font-semibold text-gray-300 mb-2;
+  }
+
+  /* Utility Helpers */
+  .scroll-y {
+    @apply overflow-y-auto;
+  }
+
+  .border-divider {
+    @apply border border-gray-600;
+  }
+
+  .bg-glass {
+    @apply bg-white/5 backdrop-blur-md;
+  }
+
+  .input-dark {
+    @apply bg-[#2a2e47] text-white border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+
+  /* Custom Shadows */
+  .shadow-soft {
+    @apply shadow-[0_2px_8px_rgba(0,0,0,0.15)];
+  }
+
+  .shadow-glow {
+    @apply shadow-[0_0_15px_rgba(59,130,246,0.6)];
+  }
+
+  .about-section {
+    @apply section-container card-dark card-hover p-6 my-6 rounded-xl shadow-soft;
+  }
+
+  .fade-in {
+    @apply transition-opacity duration-700 ease-in opacity-0;
+  }
+
+  .fade-in.visible {
+    @apply opacity-100;
+  }
+}
+
+
+
+/* Import Google Font - Inter from Google Fonts */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f7eaea 0%, #e0caca 100%);
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* Apply Inter font globally */
+  /* Base dark background color from the screenshot */
+  background-color: #1a1a2e; /* Corresponds to dark-blue-gray */
+  /* Subtle background pattern from the screenshot */
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03)),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03));
+  background-size: 40px 40px; /* Size of the repeating pattern */
+  background-position: 0 0;
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+  color: #d1d5db; /* Default light gray text color for the entire page, corresponds to light-gray */
+}
+
+/* Custom styling for the header search input to match screenshot */
+/* Using Tailwind's @apply directive for consistency and to leverage theme colors */
+.header-search-input {
+    @apply bg-dark-text border-none text-light-gray py-2 px-4 rounded-full text-sm w-[150px]; /* Fixed width as per screenshot */
+}
+.header-search-input::placeholder {
+    @apply text-gray-400; /* Using a standard Tailwind gray for placeholder */
+}
+
+@keyframes smoke-effect {
+  0% { transform: scale(0.8) translate(0%, 0%); opacity: 0; }
+  50% { transform: scale(1.2) translate(10%, -10%); opacity: 0.1; }
+  100% { transform: scale(1.5) translate(20%, 0%); opacity: 0; }
+}
+.bg-smoke::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  animation: smoke-effect 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes gradient-move {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20%, -20%) scale(1.1); }
+  50% { transform: translate(-30%, 30%) scale(0.9); }
+  75% { transform: translate(10%, -10%) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.bg-liquid-blobs {
+  position: relative;
+  background: linear-gradient(135deg, #1f2937, #0f172a);
+}
+
+.bg-liquid-blobs::before,
+.bg-liquid-blobs::after {
+  content: '';
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-liquid-blobs::before {
+  top: -20%;
+  left: -20%;
+  background: #3b82f6; /* Blue blob */
+  animation: gradient-move 30s ease-in-out infinite alternate;
+}
+
+.bg-liquid-blobs::after {
+  bottom: -20%;
+  right: -20%;
+  background: #a855f7; /* Purple blob */
+  animation: gradient-move 25s ease-in-out infinite alternate-reverse;
+}
+
+
+
+@layer base {
+  :root { --background: 0 0% 100%; --foreground: 0 0% 3.9%; --card: 0 0% 100%; --card-foreground: 0 0% 3.9%; --popover: 0 0% 100%; --popover-foreground: 0 0% 3.9%; --primary: 0 0% 9%; --primary-foreground: 0 0% 98%; --secondary: 0 0% 96.1%; --secondary-foreground: 0 0% 9%; --muted: 0 0% 96.1%; --muted-foreground: 0 0% 45.1%; --accent: 0 0% 96.1%; --accent-foreground: 0 0% 9%; --destructive: 0 84.2% 60.2%; --destructive-foreground: 0 0% 98%; --border: 0 0% 89.8%; --input: 0 0% 89.8%; --ring: 0 0% 3.9%; --chart-1: 12 76% 61%; --chart-2: 173 58% 39%; --chart-3: 197 37% 24%; --chart-4: 43 74% 66%; --chart-5: 27 87% 67%; --radius: 0.5rem;
+  }
+  .dark { --background: 0 0% 3.9%; --foreground: 0 0% 98%; --card: 0 0% 3.9%; --card-foreground: 0 0% 98%; --popover: 0 0% 3.9%; --popover-foreground: 0 0% 98%; --primary: 0 0% 98%; --primary-foreground: 0 0% 9%; --secondary: 0 0% 14.9%; --secondary-foreground: 0 0% 98%; --muted: 0 0% 14.9%; --muted-foreground: 0 0% 63.9%; --accent: 0 0% 14.9%; --accent-foreground: 0 0% 98%; --destructive: 0 62.8% 30.6%; --destructive-foreground: 0 0% 98%; --border: 0 0% 14.9%; --input: 0 0% 14.9%; --ring: 0 0% 83.1%; --chart-1: 220 70% 50%; --chart-2: 160 60% 45%; --chart-3: 30 80% 55%; --chart-4: 280 65% 60%; --chart-5: 340 75% 55%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

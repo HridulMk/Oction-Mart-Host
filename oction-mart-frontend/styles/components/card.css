@@ -1,0 +1,29 @@
+/* src/styles/components/card.css */
+
+.card {
+  background-color: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-lg);
+}
+
+.card--elevated {
+  background-color: #ab4f4f;
+  box-shadow: var(--shadow-lg);
+}
+
+.card__header {
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+}
+
+.card__body {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.card__footer {
+  margin-top: var(--space-md);
+  text-align: right;
+}
