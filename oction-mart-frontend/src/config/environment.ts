@@ -1,7 +1,7 @@
 const configuredApiUrl =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
-  'http://localhost:8000/api';
+  'http://oction-mart-host.onrender.com/api';
 const normalizedApiUrl = configuredApiUrl.trim().replace(/\/+$/, '');
 const apiBaseUrl = /\/api$/i.test(normalizedApiUrl)
   ? normalizedApiUrl
